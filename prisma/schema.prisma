@@ -29,7 +29,7 @@ model MenuCategory {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   product    Product[]
 }
 
@@ -45,8 +45,8 @@ model Product {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id])
-  menuCategories MenuCategory   @relation(fields: [menuCategoryId], references: [id])
+  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  menuCategories MenuCategory   @relation(fields: [menuCategoryId], references: [id], onDelete: Cascade)
   orderProducts  OrderProduct[]
 }
 
@@ -58,7 +58,7 @@ model Order {
   restaurantId      String
 
   orderProducts OrderProduct[]
-  restaurant    Restaurant     @relation(fields: [restaurantId], references: [id])
+  restaurant    Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 }
 
 model OrderProduct {
@@ -70,8 +70,8 @@ model OrderProduct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  product Product @relation(fields: [productId], references: [id])
-  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
 enum OrderStatus {

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import { IProductsProps } from "@/core/interfaces/products-props";
+import { formatCurrency } from "@/utils/format-currency";
 
 export const Products = ({ products }: IProductsProps) => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,10 +22,7 @@ export const Products = ({ products }: IProductsProps) => {
                 {product.description}
               </p>
               <p className="pt-3 text-sm font-semibold">
-                {new Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(product.price)}
+                {formatCurrency(product.price)}
               </p>
             </article>
             <div className="min-w-30 relative min-h-20">

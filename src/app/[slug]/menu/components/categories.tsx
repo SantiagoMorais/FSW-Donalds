@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 
+import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface IRestaurantCategoriesProps {
@@ -39,7 +40,9 @@ export const RestaurantCategories = ({
     <ScrollArea className="w-full">
       <div className="flex w-max space-x-4">
         {restaurant.menuCategories.map((category) => (
-          <p key={category.id}>{category.name}</p>
+          <Button key={category.id} variant="secondary" size="sm">
+            {category.name}
+          </Button>
         ))}
       </div>
       <ScrollBar orientation="horizontal" />

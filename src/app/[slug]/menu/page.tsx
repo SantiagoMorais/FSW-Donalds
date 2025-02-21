@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
 import { isConsumptionMethodValid } from "@/utils/is-consumption-method-valid";
 
+import RestaurantCategories from "./components/categories";
 import { RestaurantHeader } from "./components/header";
 
 interface IRestaurantMenuPageProps {
@@ -24,6 +25,7 @@ const RestaurantMenuPage = async ({
   return (
     <main>
       <RestaurantHeader restaurant={restaurant} />
+      <RestaurantCategories restaurant={restaurant} />
     </main>
   );
 };

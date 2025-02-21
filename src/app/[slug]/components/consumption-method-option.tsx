@@ -1,17 +1,9 @@
-import { ConsumptionMethod } from "@prisma/client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
-interface IConsumptionMethodOptionProps {
-  slug: string;
-  imageUrl: StaticImageData;
-  imageAlt: string;
-  buttonText: string;
-  option: ConsumptionMethod;
-}
+import { IConsumptionMethodOptionProps } from "@/core/interfaces/consumption-method-option-props";
 
 export const ConsumptionMethodOption = ({
   imageUrl,

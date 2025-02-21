@@ -1,14 +1,11 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import { IRestaurantPageProps } from "@/core/interfaces/restaurant-page-props";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
 import { consumptionMethodCards } from "@/utils/consumption-method-cards";
 
 import { ConsumptionMethodOption } from "./components/consumption-method-option";
-
-interface IRestaurantPageProps {
-  params: Promise<{ slug: string }>;
-}
 
 const RestaurantPage = async ({ params }: IRestaurantPageProps) => {
   const { slug } = await params;

@@ -1,30 +1,13 @@
 "use client";
 
-import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
-interface IRestaurantCategoriesProps {
-  restaurant: Prisma.RestaurantGetPayload<{
-    include: {
-      menuCategories: {
-        include: {
-          product: true;
-        };
-      };
-    };
-  }>;
-}
-
-type TMenuCategoryWithProducts = Prisma.MenuCategoryGetPayload<{
-  include: {
-    product: true;
-  };
-}>;
+import { IRestaurantCategoriesProps } from "@/core/interfaces/restaurant-categories-props";
+import { TMenuCategoryWithProducts } from "@/core/types/menu-category-with-products";
 
 export const RestaurantCategories = ({
   restaurant,

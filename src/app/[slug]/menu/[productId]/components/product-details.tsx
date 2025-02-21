@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { IProductDetailsProps } from "@/core/interfaces/product-details-props";
 import { formatCurrency } from "@/utils/format-currency";
 
@@ -19,8 +20,8 @@ export const ProductDetails = ({ product }: IProductDetailsProps) => {
   };
 
   return (
-    <section className="relative z-10 -mt-6 flex flex-auto flex-col rounded-t-3xl p-5">
-      <section className="flex-auto">
+    <section className="relative z-10 -mt-6 flex flex-auto flex-col overflow-hidden rounded-t-3xl p-5">
+      <section className="flex-auto overflow-hidden">
         <div className="flex items-center gap-1.5">
           <Image
             src={product.restaurant.avatarImageUrl}
@@ -34,7 +35,7 @@ export const ProductDetails = ({ product }: IProductDetailsProps) => {
           </p>
         </div>
         <h2 className="mt-1 text-xl font-semibold">{product.name}</h2>
-        <div className="flex items-center justify-between">
+        <div className="mt-3 flex items-center justify-between">
           <h3 className="text-xl font-semibold">
             {formatCurrency(product.price)}
           </h3>
@@ -57,23 +58,28 @@ export const ProductDetails = ({ product }: IProductDetailsProps) => {
             </Button>
           </div>
         </div>
-        <article className="mt-6 space-y-3">
-          <h4 className="font-semibold">Sobre:</h4>
-          <p className="text-sm text-muted-foreground">{product.description}</p>
-        </article>
-        <div className="mt-6 space-y-3">
-          <h4 className="flex items-center gap-1 font-semibold">
-            <ChefHatIcon />
-            Ingredientes:
-          </h4>
-          <ul className="text-sm text-muted-foreground">
-            {product.ingredients.map((ingredient) => (
-              <li key={ingredient}>
-                <p>{ingredient}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+
+        <ScrollArea className="h-full">
+          <article className="mt-6 space-y-3">
+            <h4 className="font-semibold">Sobre:</h4>
+            <p className="text-sm text-muted-foreground">
+              {product.description}
+            </p>
+          </article>
+          <div className="mt-6 space-y-3">
+            <h4 className="flex items-center gap-1 font-semibold">
+              <ChefHatIcon />
+              Ingredientes:
+            </h4>
+            <ul className="list-inside list-disc text-sm text-muted-foreground">
+              {product.ingredients.map((ingredient) => (
+                <li key={ingredient} className="">
+                  {ingredient}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ScrollArea>
       </section>
 
       <Button className="mt-6 w-full rounded-full">Adicionar à sacola</Button>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface IConsumptionMethodOptionProps {
+  slug: string;
   imageUrl: StaticImageData;
   imageAlt: string;
   buttonText: string;
@@ -17,6 +18,7 @@ export const ConsumptionMethodOption = ({
   imageAlt,
   buttonText,
   option,
+  slug,
 }: IConsumptionMethodOptionProps) => (
   <Card className="flex min-w-40 flex-1 items-center justify-center">
     <CardContent className="flex flex-col items-center gap-8 py-8">
@@ -24,7 +26,9 @@ export const ConsumptionMethodOption = ({
         <Image src={imageUrl} alt={imageAlt} fill className="object-contain" />
       </div>
       <Button variant="secondary" className="rounded-full">
-        <Link href={`/menu?consumptionMethod=${option}`}>{buttonText}</Link>
+        <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
+          {buttonText}
+        </Link>
       </Button>
     </CardContent>
   </Card>

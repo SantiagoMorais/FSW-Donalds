@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import dineInImage from "@/assets/imgs/dine-in-image.png";
-import takeAwayImage from "@/assets/imgs/take-away-image.png";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
+import { consumptionMethodCards } from "@/utils/consumption-method-cards";
 
 import { ConsumptionMethodOption } from "./components/consumption-method-option";
 
@@ -36,18 +35,16 @@ const RestaurantPage = async ({ params }: IRestaurantPageProps) => {
         </p>
       </section>
       <section className="flex flex-wrap gap-4 pt-14">
-        <ConsumptionMethodOption
-          imageUrl={dineInImage}
-          imageAlt="Para comer aqui"
-          buttonText="Para comer aqui"
-          option="DINE_IN"
-        />
-        <ConsumptionMethodOption
-          imageUrl={takeAwayImage}
-          imageAlt="Para levar"
-          buttonText="Para levar"
-          option="TAKEAWAY"
-        />
+        {consumptionMethodCards.map((method) => (
+          <ConsumptionMethodOption
+            slug={slug}
+            buttonText={method.buttonText}
+            imageAlt={method.imageAlt}
+            imageUrl={method.imageUrl}
+            option={method.option}
+            key={method.option}
+          />
+        ))}
       </section>
     </main>
   );

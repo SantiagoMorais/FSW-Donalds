@@ -22,6 +22,6 @@ export const consumptionMethodCards: IConsumptionMethodOptionProps[] = [
     imageUrl: takeAwayImage,
     imageAlt: "Para levar",
     buttonText: "Para levar",
-    option: ConsumptionMethod.TAKEAWAY,
+    option: ConsumptionMethod.TAKE_AWAY,
   },
 ];

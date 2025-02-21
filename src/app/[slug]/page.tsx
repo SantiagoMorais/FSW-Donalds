@@ -40,11 +40,13 @@ const RestaurantPage = async ({ params }: IRestaurantPageProps) => {
           imageUrl={dineInImage}
           imageAlt="Para comer aqui"
           buttonText="Para comer aqui"
+          option="DINE_IN"
         />
         <ConsumptionMethodOption
           imageUrl={takeAwayImage}
           imageAlt="Para levar"
           buttonText="Para levar"
+          option="TAKEAWAY"
         />
       </section>
     </main>

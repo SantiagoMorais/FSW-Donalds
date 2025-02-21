@@ -1,13 +1,22 @@
-import { Restaurant } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 
 interface IRestaurantCategoriesProps {
-  restaurant: Restaurant;
+  restaurant: Prisma.RestaurantGetPayload<{
+    include: {
+      menuCategories: {
+        include: {
+          product: true;
+        };
+      };
+    };
+  }>;
 }
 
 const RestaurantCategories = ({ restaurant }: IRestaurantCategoriesProps) => {
-  return (
+  
+  return(
     <section className="relative z-10 -mt-6 space-y-3 rounded-t-3xl border bg-white p-5">
       <header className="flex items-center gap-3">
         <Image

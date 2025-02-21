@@ -13,8 +13,9 @@ import { formatCurrency } from "@/utils/format-currency";
 import { CartSheet } from "./cart-sheet";
 
 export const ProductDetails = ({ product }: IProductDetailsProps) => {
-  const { toggleCart, isOpen } = useCartContext();
+  const { toggleCart, addProducts } = useCartContext();
   const [quantity, setQuantity] = useState<number>(1);
+
   const handleDecreaseQuantity = () => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
   };
@@ -25,6 +26,10 @@ export const ProductDetails = ({ product }: IProductDetailsProps) => {
 
   const handleAddToCart = () => {
     toggleCart();
+    addProducts({
+      ...product,
+      quantity,
+    });
   };
 
   return (
@@ -95,7 +100,7 @@ export const ProductDetails = ({ product }: IProductDetailsProps) => {
           Adicionar à sacola
         </Button>
       </section>
-      <CartSheet isOpen={isOpen} toggleCart={toggleCart} />
+      <CartSheet />
     </>
   );
 };

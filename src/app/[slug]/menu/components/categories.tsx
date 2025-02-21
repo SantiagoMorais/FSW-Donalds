@@ -9,6 +9,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { IRestaurantCategoriesProps } from "@/core/interfaces/restaurant-categories-props";
 import { TMenuCategoryWithProducts } from "@/core/types/menu-category-with-products";
 
+import { Products } from "./products";
+
 export const RestaurantCategories = ({
   restaurant,
 }: IRestaurantCategoriesProps) => {
@@ -24,25 +26,25 @@ export const RestaurantCategories = ({
   };
 
   return (
-    <section className="relative z-10 -mt-6 space-y-3 rounded-t-3xl border bg-white">
-      <header className="flex items-center gap-3 px-5 pt-5">
+    <section className="relative z-10 -mt-6 rounded-t-3xl bg-white">
+      <header className="flex items-center gap-3 p-5">
         <Image
           src={restaurant.avatarImageUrl}
           alt={restaurant.name}
           height={45}
           width={45}
         />
-        <div>
+        <article>
           <h2 className="text-lg font-semibold">{restaurant.name}</h2>
           <p className="text-sm opacity-55">{restaurant.description}</p>
-        </div>
+        </article>
       </header>
-      <article className="flex items-center gap-1 px-5 pb-5 text-xs text-green-500">
+      <div className="flex items-center gap-1 border-b px-5 pb-5 text-xs text-green-500">
         <ClockIcon size={12} />
         <p>Aberto</p>
-      </article>
+      </div>
       <ScrollArea className="w-full">
-        <div className="flex w-max space-x-4 px-4 pb-4">
+        <div className="flex w-max space-x-4 px-5 pb-6 pt-5">
           {restaurant.menuCategories.map((category) => (
             <Button
               key={category.id}
@@ -57,6 +59,9 @@ export const RestaurantCategories = ({
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
+
+      <h3 className="px-5 font-semibold">{selectedCategory.name}</h3>
+      <Products products={selectedCategory.product} />
     </section>
   );
 };

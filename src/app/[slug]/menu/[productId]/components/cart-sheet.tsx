@@ -1,29 +1,26 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useCartContext } from "@/contexts/cart";
 
+import { CartProductItem } from "./cart-product-item";
+
 export const CartSheet = () => {
   const { isOpen, toggleCart, products } = useCartContext();
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent>
+      <SheetContent className="w-4/5">
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
+          <SheetTitle className="text-left">Sacola</SheetTitle>
         </SheetHeader>
-        {products.map((product) => (
-          <h1 key={product.id}>
-            {product.name} - {product.quantity}
-          </h1>
-        ))}
+        <ul className="space-y-5 py-5">
+          {products.map((product) => (
+            <CartProductItem product={product} key={product.id} />
+          ))}
+        </ul>
       </SheetContent>
     </Sheet>
   );

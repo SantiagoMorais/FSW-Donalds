@@ -59,6 +59,9 @@ export default {
       minWidth: {
         30: "120px",
       },
+      maxWidth: {
+        "9/10": "90%",
+      },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports

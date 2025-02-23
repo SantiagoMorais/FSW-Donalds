@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Sheet,
@@ -10,6 +9,7 @@ import { useCartContext } from "@/contexts/cart";
 import { formatCurrency } from "@/utils/format-currency";
 
 import { CartProductItem } from "./cart-product-item";
+import { FinishOrderButton } from "./finish-order-button";
 
 export const CartSheet = () => {
   const { isOpen, toggleCart, products, total } = useCartContext();
@@ -34,7 +34,7 @@ export const CartSheet = () => {
               </div>
             </CardContent>
           </Card>
-          <Button className="w-full rounded-full">Finalizar Pedido</Button>
+          <FinishOrderButton />
         </section>
       </SheetContent>
     </Sheet>

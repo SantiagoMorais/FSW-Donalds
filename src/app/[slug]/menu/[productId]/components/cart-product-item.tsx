@@ -6,7 +6,7 @@ import { ICartProduct, useCartContext } from "@/contexts/cart";
 import { formatCurrency } from "@/utils/format-currency";
 
 export const CartProductItem = ({ product }: { product: ICartProduct }) => {
-  const { decreaseProductQuantity } = useCartContext();
+  const { decreaseProductQuantity, increaseProductQuantity } = useCartContext();
 
   return (
     <li className="flex items-center justify-between">
@@ -33,8 +33,14 @@ export const CartProductItem = ({ product }: { product: ICartProduct }) => {
             >
               <ChevronLeftIcon size={16} />
             </Button>
-            <p className="w-7 text-center text-xs">{product.quantity}</p>
-            <Button className="size-7 rounded-lg" variant="destructive">
+            <p className="w-7 select-none text-center text-xs">
+              {product.quantity}
+            </p>
+            <Button
+              className="size-7 rounded-lg"
+              variant="destructive"
+              onClick={() => increaseProductQuantity(product.id)}
+            >
               <ChevronRightIcon size={16} />
             </Button>
           </div>

@@ -6,7 +6,8 @@ import { ICartProduct, useCartContext } from "@/contexts/cart";
 import { formatCurrency } from "@/utils/format-currency";
 
 export const CartProductItem = ({ product }: { product: ICartProduct }) => {
-  const { decreaseProductQuantity, increaseProductQuantity } = useCartContext();
+  const { decreaseProductQuantity, increaseProductQuantity, removeProduct } =
+    useCartContext();
 
   return (
     <li className="flex items-center justify-between">
@@ -46,7 +47,11 @@ export const CartProductItem = ({ product }: { product: ICartProduct }) => {
           </div>
         </div>
       </article>
-      <Button className="size-7 rounded-lg" variant="outline">
+      <Button
+        className="size-7 rounded-lg"
+        variant="outline"
+        onClick={() => removeProduct(product.id)}
+      >
         <TrashIcon />
       </Button>
     </li>

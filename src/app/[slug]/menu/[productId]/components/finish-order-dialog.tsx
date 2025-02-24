@@ -1,109 +1,29 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { PatternFormat } from "react-number-format";
-
-import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { IFinishOrderDialogProps } from "@/core/interfaces/finish-order-dialog";
-import { formSchema, TFormSchema } from "@/core/types/form-schema";
+
+import { FinishOrderDialogForm } from "./finish-order-dialog-form";
 
 export const FinishOrderDialog = ({
   open,
   onOpenChange,
-}: IFinishOrderDialogProps) => {
-  const form = useForm<TFormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      zipCode: "",
-    },
-    shouldUnregister: true,
-  });
-
-  const onSubmit = (data: TFormSchema) => {
-    console.log({ data });
-  };
-
-  return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Finalizar Pedido</DrawerTitle>
-          <DrawerDescription>
-            Insira suas informações abaixo para finalizar o seu pedido
-          </DrawerDescription>
-        </DrawerHeader>
-        <section className="p-5">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Seu nome</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Digite o seu nome" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="zipCode"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Seu CPF</FormLabel>
-                    <FormControl>
-                      <PatternFormat
-                        placeholder="Digite o seu cpf"
-                        format="###.###.###-##"
-                        customInput={Input}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <DrawerFooter>
-                <Button
-                  type="submit"
-                  variant="destructive"
-                  className="w-full rounded-full"
-                >
-                  Finalizar
-                </Button>
-                <DrawerClose asChild>
-                  <Button variant="outline" className="w-full rounded-full">
-                    Cancelar
-                  </Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </form>
-          </Form>
-        </section>
-      </DrawerContent>
-    </Drawer>
-  );
-};
+}: IFinishOrderDialogProps) => (
+  <Drawer open={open} onOpenChange={onOpenChange}>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Finalizar Pedido</DrawerTitle>
+        <DrawerDescription>
+          Insira suas informações abaixo para finalizar o seu pedido
+        </DrawerDescription>
+      </DrawerHeader>
+      <section className="p-5">
+        <FinishOrderDialogForm />
+      </section>
+    </DrawerContent>
+  </Drawer>
+);

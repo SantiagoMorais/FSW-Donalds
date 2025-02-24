@@ -1,5 +1,16 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 const HomePage = () => {
-  return <h1 className="text-red-500">Hello World!</h1>;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/fsw-donalds");
+  }, [router]);
+
+  return null;
 };
 
 export default HomePage;

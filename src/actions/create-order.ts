@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { ICreateOrderInput } from "@/core/interfaces/create-order-input";
@@ -47,5 +48,6 @@ export const createOrder = async (input: ICreateOrderInput) => {
       restaurantId: restaurant?.id,
     },
   });
+  revalidatePath(`/${input.slug}/orders`);
   redirect(`/${input.slug}/orders?cpf=${formattedZipCode}`);
 };

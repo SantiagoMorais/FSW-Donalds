@@ -13,7 +13,6 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
   Form,
@@ -24,15 +23,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { IFinishOrderDialogProps } from "@/core/interfaces/finish-order-dialog";
 import { formSchema, TFormSchema } from "@/core/types/form-schema";
 
-export const FinishOrderButton = () => {
+export const FinishOrderDialog = ({
+  open,
+  onOpenChange,
+}: IFinishOrderDialogProps) => {
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       zipCode: "",
     },
+    shouldUnregister: true,
   });
 
   const onSubmit = (data: TFormSchema) => {
@@ -40,10 +44,7 @@ export const FinishOrderButton = () => {
   };
 
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="w-full rounded-full">Finalizar Pedido</Button>
-      </DrawerTrigger>
+    <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Finalizar Pedido</DrawerTitle>
@@ -86,9 +87,17 @@ export const FinishOrderButton = () => {
                 )}
               />
               <DrawerFooter>
-                <Button type="submit">Submit</Button>
+                <Button
+                  type="submit"
+                  variant="destructive"
+                  className="w-full rounded-full"
+                >
+                  Finalizar
+                </Button>
                 <DrawerClose asChild>
-                  <Button variant="outline">Cancel</Button>
+                  <Button variant="outline" className="w-full rounded-full">
+                    Cancelar
+                  </Button>
                 </DrawerClose>
               </DrawerFooter>
             </form>

@@ -25,7 +25,7 @@ export const Products = ({ products }: IProductsProps) => {
                 {formatCurrency(product.price)}
               </p>
             </article>
-            <div className="min-w-30 relative min-h-20">
+            <div className="relative min-h-20 min-w-30">
               <Image
                 src={product.imageUrl}
                 alt={product.name}

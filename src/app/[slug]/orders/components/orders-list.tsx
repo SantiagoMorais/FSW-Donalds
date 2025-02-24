@@ -10,6 +10,7 @@ import { OrderItem } from "./order-item";
 
 export const OrdersList = ({ orders }: IOrdersListProps) => {
   const router = useRouter();
+  const handleBackClick = () => router.back();
 
   return (
     <section className="space-y-6 p-6">
@@ -17,7 +18,7 @@ export const OrdersList = ({ orders }: IOrdersListProps) => {
         size="icon"
         variant="secondary"
         className="rounded-full"
-        onClick={() => router.back()}
+        onClick={handleBackClick}
       >
         <ChevronLeftIcon />
       </Button>

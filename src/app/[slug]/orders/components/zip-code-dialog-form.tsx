@@ -29,7 +29,7 @@ export const ZipCodeDialogForm = () => {
 
   const onSubmit = (data: TZipCodeFormSchema) => {
     const formattedZipCode = removeZipCodePunctuation(data.zipCode);
-    router.push(`${pathName}?cpf=${formattedZipCode}`);
+    router.replace(`${pathName}?cpf=${formattedZipCode}`);
   };
 
   const handleCancel = () => router.back();

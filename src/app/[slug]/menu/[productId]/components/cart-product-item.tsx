@@ -17,7 +17,7 @@ export const CartProductItem = ({ product }: { product: ICartProduct }) => {
             src={product.imageUrl}
             alt={product.name}
             fill
-            className="p-1"
+            className="object-contain p-1"
           />
         </div>
         <div className="space-y-1">

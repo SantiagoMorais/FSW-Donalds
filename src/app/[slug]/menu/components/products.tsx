@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 import { IProductsProps } from "@/core/interfaces/products-props";
 import { formatCurrency } from "@/utils/format-currency";
 
 export const Products = ({ products }: IProductsProps) => {
   const { slug } = useParams<{ slug: string }>();
+  const searchParams = useSearchParams();
+  const consumptionMethod = searchParams.get("consumptionMethod");
 
   return (
     <ul className="space-y-3">
       {products.map((product) => (
         <li key={product.id}>
           <Link
-            href={`/${slug}/menu/${product.id}`}
+            href={`/${slug}/menu/${product.id}?consumptionMethod=${consumptionMethod}`}
             className="flex items-center justify-between gap-10 border-b px-5 py-3"
           >
             <article>

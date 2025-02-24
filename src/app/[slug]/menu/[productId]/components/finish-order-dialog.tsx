@@ -22,7 +22,7 @@ export const FinishOrderDialog = ({
         </DrawerDescription>
       </DrawerHeader>
       <section className="p-5">
-        <FinishOrderDialogForm />
+        <FinishOrderDialogForm onOpenChange={onOpenChange} />
       </section>
     </DrawerContent>
   </Drawer>

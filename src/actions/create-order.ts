@@ -5,6 +5,14 @@ import { db } from "@/lib/prisma";
 import { removeZipCodePunctuation } from "@/utils/verify-zip-code";
 
 export const createOrder = async (input: ICreateOrderInput) => {
+  const restaurant = await db.restaurant.findUnique({
+    where: {
+      slug: input.slug,
+    },
+  });
+
+  if (!restaurant) throw new Error("Restaurant not found");
+
   const productsWithPrices = await db.product.findMany({
     where: {
       id: {
@@ -33,7 +41,7 @@ export const createOrder = async (input: ICreateOrderInput) => {
       total: productsWithPricesAndQuantities.reduce((acc, product) => {
         return acc + product.price * product.quantity;
       }, 0),
-      restaurantId: input.restaurantId,
+      restaurantId: restaurant?.id,
     },
   });
 };

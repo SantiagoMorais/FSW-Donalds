@@ -8,5 +8,5 @@ export interface ICreateOrderInput {
     quantity: number;
   }>;
   consumptionMethod: ConsumptionMethod;
-  restaurantId: string;
+  slug: string;
 }

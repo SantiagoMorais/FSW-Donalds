@@ -7,6 +7,7 @@ import { db } from "@/lib/prisma";
 import { removeZipCodePunctuation } from "@/utils/verify-zip-code";
 
 export const createOrder = async (input: ICreateOrderInput) => {
+  const formattedZipCode = removeZipCodePunctuation(input.customerZipCode);
   const restaurant = await db.restaurant.findUnique({
     where: {
       slug: input.slug,
@@ -46,5 +47,5 @@ export const createOrder = async (input: ICreateOrderInput) => {
       restaurantId: restaurant?.id,
     },
   });
-  redirect(`/${input.slug}/orders`);
+  redirect(`/${input.slug}/orders?cpf=${formattedZipCode}`);
 };

@@ -4,7 +4,10 @@ import { removeZipCodePunctuation } from "@/utils/verify-zip-code";
 export const getOrdersByZipCode = async (zipCode: string) => {
   const customerZipCode = removeZipCodePunctuation(zipCode);
 
-  return await db.order.findMany({
+  const orders = await db.order.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
     where: {
       customerZipCode,
     },
@@ -22,4 +25,6 @@ export const getOrdersByZipCode = async (zipCode: string) => {
       },
     },
   });
+
+  return orders;
 };

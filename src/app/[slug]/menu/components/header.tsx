@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { useCartContext } from "@/contexts/cart";
 import { IRestaurantHeaderProps } from "@/core/interfaces/restaurant-header-props";
 
 export const RestaurantHeader = ({ restaurant }: IRestaurantHeaderProps) => {
+  const { toggleCart } = useCartContext();
   const router = useRouter();
   const handleBackClick = () => router.back();
 
@@ -31,6 +33,7 @@ export const RestaurantHeader = ({ restaurant }: IRestaurantHeaderProps) => {
         variant="secondary"
         size="icon"
         className="absolute right-4 top-4 z-10 rounded-full"
+        onClick={toggleCart}
       >
         <ScrollTextIcon />
       </Button>

@@ -11,7 +11,7 @@ export const CartProductItem = ({ product }: { product: ICartProduct }) => {
 
   return (
     <li className="flex items-center justify-between">
-      <article className="flex items-center gap-3">
+      <article className="flex flex-1 items-center gap-3">
         <div className="relative size-20 rounded-xl bg-gray-200">
           <Image
             src={product.imageUrl}
@@ -21,7 +21,9 @@ export const CartProductItem = ({ product }: { product: ICartProduct }) => {
           />
         </div>
         <div className="space-y-1">
-          <p className="max-w-9/10 truncate">{product.name}</p>
+          <p className="max-w-9/10 truncate text-ellipsis text-xs">
+            {product.name}
+          </p>
           <p className="text-sm font-semibold">
             {formatCurrency(product.price)}
           </p>

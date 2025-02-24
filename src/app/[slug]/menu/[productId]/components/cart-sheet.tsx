@@ -21,7 +21,7 @@ export const CartSheet = () => {
           <SheetTitle className="text-left">Sacola</SheetTitle>
         </SheetHeader>
         <section className="flex h-full flex-col py-5">
-          <ul className="py-5/ flex-auto space-y-5">
+          <ul className="w-full flex-auto space-y-5 py-5">
             {products.map((product) => (
               <CartProductItem product={product} key={product.id} />
             ))}
